@@ -2156,13 +2156,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -3214,8 +3207,8 @@
                 "text": "edit note"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3312,12 +3305,106 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "4d308c0d-72a6-4cbc-afca-e2b2ac90d877",
+                  "title": "Impersonation to edit notes",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker impersonates a user with edit permissions (e.g., by stealing a session token or shared secret link) to modify notes unauthorized.",
+                  "mitigation": "- Use secure, short-lived session tokens with HttpOnly and SameSite attributes. \n- Implement multi-factor authentication (MFA). \n- Ensure shared secret links are single-use or time-limited. \n- Validate user identity for edit actions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 68,
+                  "score": ""
+                },
+                {
+                  "id": "17e3fb70-7d42-4169-aeec-30afdbe0657a",
+                  "title": "Unauthorized modification of note content",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker alters note content in transit or exploits server vulnerabilities (e.g., weak input validation) to modify notes without permission.",
+                  "mitigation": "- Enforce HTTPS with strong TLS configurations. \n- Implement strict server-side input validation and sanitization to prevent injection (e.g., XSS, SQL injection). \n- Validate user permissions before processing edits.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 69,
+                  "score": ""
+                },
+                {
+                  "id": "85643daf-454a-4241-afeb-2f9bbb7f0d2d",
+                  "title": "Denial of note edit actions",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "A user with edit permissions modifies a note and denies making changes, causing disputes over note content.",
+                  "mitigation": "- Log all note edit actions with timestamps, user IDs, and IP addresses. \n- Maintain version history for notes to track changes. \n- Require MFA for stronger user attribution.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 70,
+                  "score": ""
+                },
+                {
+                  "id": "ef5c8084-20f5-4956-a587-b46511d2b74e",
+                  "title": "Exposure of note content during editing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "An attacker intercepts note content or session data during the edit process, exposing sensitive information.",
+                  "mitigation": "- Use secure, HttpOnly, and SameSite cookies for session tokens. \n- Encrypt sensitive note content in the database. \n- Restrict database access to the web application. \n- Audit server configurations for vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 71,
+                  "score": ""
+                },
+                {
+                  "id": "9bdaf1cb-c68b-4325-8593-43c2bf5f8e75",
+                  "title": "Disrupting the edit note functionality",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker floods the edit note endpoint, preventing users from saving or editing notes.",
+                  "mitigation": "- Implement rate limiting on edit note endpoints. \n- Use a Web Application Firewall (WAF) to block malicious traffic. \n- Ensure server scalability to handle high loads. \n- Cache note data to reduce server load.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 72,
+                  "score": ""
+                },
+                {
+                  "id": "72e1cc25-71cc-4b5d-874b-4e37a03a5abc",
+                  "title": "Gaining unauthorized edit permissions",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker exploits vulnerabilities (e.g., session hijacking, weak permission checks) to edit notes without proper authorization.",
+                  "mitigation": "- Implement role-based access control (RBAC) to enforce edit permissions. \n- Use secure session management (e.g., signed, short-lived tokens). \n- Validate permissions for every edit request. \n- Test for privilege escalation vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 73,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ]
@@ -3325,6 +3412,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 67
+    "threatTop": 73
   }
 }
