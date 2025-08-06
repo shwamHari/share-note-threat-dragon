@@ -723,8 +723,8 @@
                 "text": "register"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -821,12 +821,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "6dc1971e-4621-431e-b2b9-32775ba8d941",
+                  "title": "Impersonation during registration",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker registers with fake credentials (e.g., using someone else’s email) to gain unauthorized access or mislead users.",
+                  "mitigation": "- Implement email verification (e.g., confirmation link). \n - Use CAPTCHA to prevent bot registrations. \n - Validate input for authenticity (e.g., email format).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 56,
+                  "score": ""
+                },
+                {
+                  "id": "9b36dcbc-b590-4a73-af17-ce55cdaab662",
+                  "title": "Modification of registration data in transit",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker intercepts and alters registration data (e.g., username, password) during transmission, potentially creating a malicious account.",
+                  "mitigation": "- Enforce HTTPS with strong TLS configurations. \n - Implement server-side input validation and sanitization. \n - Use secure session management.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 57,
+                  "score": ""
+                },
+                {
+                  "id": "34d60ccc-92f2-42c1-8409-7c477f0c6ccf",
+                  "title": "Denial of registration actions",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "A malicious user registers an account and denies creating it to avoid accountability for actions taken with the account.",
+                  "mitigation": "- Log registration attempts with timestamps, IP addresses, and user details. \n - Require email verification for traceability. \n - Use digital signatures (if applicable).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 58,
+                  "score": ""
+                },
+                {
+                  "id": "8b0ab409-0d3c-4ded-91cd-fa2dc6196f41",
+                  "title": "Exposure of user credentials",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "An attacker gains access to sensitive registration data (e.g., passwords, emails) due to improper storage or transmission vulnerabilities.",
+                  "mitigation": "- Store passwords using strong hashing (e.g., bcrypt, Argon2). \n - Ensure HTTPS for all transmission. \n - Restrict database access to the web application. \n - Audit server/database configurations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 59,
+                  "score": ""
+                },
+                {
+                  "id": "4e0801cf-b181-42be-9011-649c2a3ec3e3",
+                  "title": "Overloading the registration endpoint",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker floods the registration endpoint with requests, preventing legitimate users from registering.",
+                  "mitigation": "- Implement rate limiting on the registration endpoint. \n - Use CAPTCHA to deter automated attacks. \n - Deploy a Web Application Firewall (WAF). \n - Ensure server scalability.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 60,
+                  "score": ""
+                },
+                {
+                  "id": "4a7148f0-1f03-413b-94cc-b7e776542c28",
+                  "title": "Gaining unauthorized access during registration",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker exploits vulnerabilities (e.g., weak input validation) to create an account with higher privileges (e.g., admin access).",
+                  "mitigation": "- Enforce strict input validation to prevent injection attacks. \n - Assign minimal privileges to new accounts. \n - Implement role-based access control (RBAC). \n - Test for privilege escalation vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 61,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -3040,6 +3127,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 17,
             "ports": {
               "groups": {
                 "top": {
@@ -3123,7 +3211,6 @@
               ]
             },
             "id": "9de5d91a-06ab-4309-84f7-fc06fb50c586",
-            "zIndex": 17,
             "data": {
               "type": "tm.Process",
               "name": "edit note",
@@ -3144,6 +3231,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 36
+    "threatTop": 61
   }
 }
