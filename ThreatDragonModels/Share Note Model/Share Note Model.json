@@ -1055,7 +1055,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1076,12 +1077,57 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "44f0ba1a-f20b-47f2-a8da-03e9fc5c0ae1",
+                  "title": "Exposure of confirmation message content",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "An attacker intercepts the confirmation email or link, exposing sensitive data (e.g., email address, token) that could be used to hijack registration.",
+                  "mitigation": "- Use secure email protocols (e.g., TLS for SMTP). \n- Minimize sensitive data in emails (e.g., avoid including passwords). \n- Use short-lived, encrypted confirmation tokens. \n- Audit email service security configurations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 74,
+                  "score": ""
+                },
+                {
+                  "id": "35bd2fa6-ff79-4cb3-af92-9d8081bb8918",
+                  "title": "Modification of confirmation message",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker alters the confirmation link in transit (e.g., changing the verification token) to hijack the registration process.",
+                  "mitigation": "- Use HTTPS for link generation and validation. \n- Sign confirmation links (e.g., with HMAC) to detect tampering. \n- Use secure email protocols (e.g., TLS for SMTP). \n- Validate link integrity on the server.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 75,
+                  "score": ""
+                },
+                {
+                  "id": "ee6cf5b5-257c-46fb-8b34-91bea6e302b9",
+                  "title": "Blocking confirmation message delivery",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker disrupts the email service or floods the confirmation endpoint, preventing users from receiving or activating confirmation messages.",
+                  "mitigation": "- Use a reliable, scalable email service with DoS protections. \n- Implement retry mechanisms for email delivery. \n- Monitor email service availability. \n- Use a Web Application Firewall (WAF) for confirmation endpoints.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 76,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 3,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "confirmation message"
@@ -1108,7 +1154,17 @@
                 "x": 410,
                 "y": 530
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "shape": "flow",
@@ -3398,13 +3454,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ]
@@ -3412,6 +3461,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 73
+    "threatTop": 76
   }
 }
