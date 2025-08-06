@@ -1175,8 +1175,8 @@
                 "y": 120
               },
               {
-                "x": 480,
-                "y": 100
+                "x": 450,
+                "y": 80
               }
             ]
           },
@@ -1615,61 +1615,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "shared secret token/link",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "shared secret token/link"
-            ],
-            "id": "a0fccd88-89d5-44b5-8676-6e92ff8e32fb",
-            "source": {
-              "x": 680,
-              "y": 10
-            },
-            "target": {
-              "cell": "1e5ca40c-5d45-4084-aac0-8b7d82486446",
-              "port": "b332ec9f-a17c-48ea-8cdf-325c2411815a"
-            },
-            "vertices": [
-              {
-                "x": 660,
-                "y": 10
-              },
-              {
-                "x": 520,
-                "y": 40
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "note content",
               "description": "images, text, and hyperlinks. ",
               "outOfScope": false,
@@ -1820,52 +1765,7 @@
                   "name": "block"
                 },
                 "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Data Flow"
-            ],
-            "id": "ea76e4f7-4792-44be-9b4d-033596b9a98b",
-            "source": {
-              "x": 60,
-              "y": 200
-            },
-            "target": {
-              "cell": "fce65a3b-712b-4c0c-911a-2d19fac158da",
-              "port": "6b0cbf6b-24bb-4c5e-9c07-1b639ff3f141"
-            }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
                   "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
                 },
                 "strokeDasharray": null
               }
@@ -1882,7 +1782,7 @@
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
-              "isBidirectional": false,
+              "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
@@ -1891,16 +1791,74 @@
             "labels": [
               "shared secret token/link"
             ],
-            "id": "cd229245-9027-478a-82f0-0bc06d55fd7f",
+            "id": "a0fccd88-89d5-44b5-8676-6e92ff8e32fb",
             "source": {
-              "cell": "1e5ca40c-5d45-4084-aac0-8b7d82486446",
-              "port": "6b0cbf6b-24bb-4c5e-9c07-1b639ff3f141"
+              "x": 680,
+              "y": -10
             },
             "target": {
-              "cell": "f0b14070-c5a8-40bf-a28f-6ca7be88fd98",
-              "port": "326de36f-77b9-41f1-ac28-f44900c6d5dc"
+              "cell": "1e5ca40c-5d45-4084-aac0-8b7d82486446",
+              "port": "b332ec9f-a17c-48ea-8cdf-325c2411815a"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 610,
+                "y": -10
+              },
+              {
+                "x": 550,
+                "y": 20
+              },
+              {
+                "x": 430,
+                "y": 20
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "shared secret token/link",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "shared secret token/link"
+            ],
+            "id": "fa313955-6163-4af7-8423-66bdc0f1de85",
+            "source": {
+              "x": 720,
+              "y": 30
+            },
+            "target": {
+              "cell": "fce65a3b-712b-4c0c-911a-2d19fac158da",
+              "port": "328f919b-1ba7-40e3-91e3-eca790934dd1"
+            }
           },
           {
             "position": {
@@ -2641,13 +2599,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -3172,126 +3123,6 @@
             "data": {
               "type": "tm.Process",
               "name": "edit note",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
-              "isWebApplication": false,
-              "privilegeLevel": "",
-              "threats": []
-            }
-          },
-          {
-            "position": {
-              "x": 16.999999999999993,
-              "y": 130
-            },
-            "size": {
-              "width": 90,
-              "height": 70
-            },
-            "attrs": {
-              "text": {
-                "text": "Share Link"
-              },
-              "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "process",
-            "ports": {
-              "groups": {
-                "top": {
-                  "position": "top",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "right": {
-                  "position": "right",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "bottom": {
-                  "position": "bottom",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "left": {
-                  "position": "left",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                }
-              },
-              "items": [
-                {
-                  "group": "top",
-                  "id": "326de36f-77b9-41f1-ac28-f44900c6d5dc"
-                },
-                {
-                  "group": "right",
-                  "id": "e6d25928-746e-46bd-a443-4759e9dc9b83"
-                },
-                {
-                  "group": "bottom",
-                  "id": "fe9b062b-4ec0-4f10-b77a-4688a5f46a9e"
-                },
-                {
-                  "group": "left",
-                  "id": "ea2086e3-adc8-49ad-9d39-73e84fc21308"
-                }
-              ]
-            },
-            "id": "f0b14070-c5a8-40bf-a28f-6ca7be88fd98",
-            "zIndex": 18,
-            "data": {
-              "type": "tm.Process",
-              "name": "Share Link",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
