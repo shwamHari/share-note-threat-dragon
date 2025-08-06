@@ -31,8 +31,8 @@
                 "text": "logged in user"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -129,9 +129,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "ce8dae26-209e-450f-ba44-13971e6d9655",
+                  "title": "User Impersonation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker could impersonate a legitimate user eg. by credentials of user being stolen or guessed.",
+                  "mitigation": "Implement secure authentication mechanisms such as password hashing, session tokens, and optionally multi-factor authentication.\n\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "af73d730-9db5-4fa8-9017-544286d16d90",
+                  "title": "Denial of User Actions",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": " User could deny having created, edited, or shared a note.",
+                  "mitigation": "Maintain secure audit logs of all user actions, including timestamps and user IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 2
+              }
             }
           },
           {
@@ -148,8 +179,8 @@
                 "text": "public visitor"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -246,9 +277,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "f7a51641-353d-44c3-8137-6338973391f6",
+                  "title": "Fake User Registration",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker may register with fake or spoofed credentials to abuse the system.",
+                  "mitigation": "Enforce CAPTCHA, validate email addresses, and rate-limit registration attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "404ce463-5d6c-42d8-95ef-c77c195fade3",
+                  "title": "Denial of Actions",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Since public users are anonymous, any interactions (like comments) cannot be definitively attributed.\n",
+                  "mitigation": "Restrict comment functionality to authenticated users, or associate anonymous actions with temporary session IDs and log them.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 2
+              }
             }
           },
           {
@@ -265,8 +327,8 @@
                 "text": "email service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -363,9 +425,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "9100bbdf-2f75-45c4-955a-6338b35fa62c",
+                  "title": "Email Service Spoofing",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "An attacker could spoof the identity of the system’s email service, sending fake or malicious note links to users.",
+                  "mitigation": "Use protections like SPF, DKIM, and DMARC to prevent email spoofing and ensure email authenticity.\n\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "f787e455-5e28-420b-88db-6ee85ca97034",
+                  "title": "Denial of Link Share",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "There may be no reliable way to prove which user initiated a shared link email if logging is not enforced.\n",
+                  "mitigation": "Log all link generation actions server-side, including information like the userID, access level, timestamp, and recipient emails/user ids.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 3,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -1452,13 +1545,13 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Boundary",
-              "name": "Trust Boundary",
+              "name": "ShareNote Secured Infrastructure\n",
               "description": "",
               "isTrustBoundary": true,
               "hasOpenThreats": false
             },
             "labels": [
-              "Trust Boundary"
+              "ShareNote Secured Infrastructure\n"
             ],
             "id": "a227c7a3-a942-42d3-a655-1aa6733f6fe4",
             "source": {
@@ -1477,6 +1570,10 @@
               {
                 "x": 660,
                 "y": 70
+              },
+              {
+                "x": 610,
+                "y": 320
               },
               {
                 "x": 640,
@@ -1732,8 +1829,8 @@
                 "text": "Create Note"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1830,12 +1927,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "fa050cc2-872b-4c6d-92fe-f75ad095d1af",
+                  "title": "Spoofed Create Note Process Request",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker or malicious internal component sends forged requests pretending to be the Create Note process, creating notes without authorisation.\n",
+                  "mitigation": "Authenticate API calls internally, verify caller identites\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "9b014e71-6282-4672-84cb-b4268597ca5e",
+                  "title": "Tampering with Note Creation Data",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Data passed into the Create Note process is manipulated en route or internally e.g. altering note text, images or links.",
+                  "mitigation": "Input validation, cryptographic signing of data, integrity checks.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "e0811de0-24f2-4bda-9727-132fb75b5d10",
+                  "title": "Unlogged Create Note Actions",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Create Note process operations are not logged, enabling denial of note creation events.\n",
+                  "mitigation": "Log all note creation events with timestamps and process identifiers.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "ebffbf2f-1d7f-4894-97ea-7c2c116fdda6",
+                  "title": "Leakage of Note Data in Process",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "The Create Note process unintentionally exposes note data e.g. via logs or error messages.",
+                  "mitigation": "Avoid logging sensitive data, sanitise logs, secure error handling.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "cc8bc425-6e26-4a4e-a6b1-b42024f3cd25",
+                  "title": "Exhaustion via Create Note Process",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Flooding the Create Note process with requests causing resource exhaustion or crashing.\n",
+                  "mitigation": "Rate limiting, load balancing.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "0f5b3d9c-1886-409e-a1a7-f5f52e203bc5",
+                  "title": "Unauthorised Privilege Escalation within the Create Note Process",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "The Create Note process might be exploited to bypass permission checks, allowing note creation with elevated privileges, such as creating notes under another user’s identity or with permissions the requester should not have.\n",
+                  "mitigation": "Enforce strict server-side authorisation on note creation requests, ensuring the requester only creates notes they are permitted to, principle of least privilege.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -2323,6 +2507,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 12
   }
 }
