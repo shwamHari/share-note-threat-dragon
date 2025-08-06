@@ -1965,8 +1965,8 @@
                 "text": "login"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2063,12 +2063,106 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "8e14ed61-81a0-41d7-81b3-729aac67f114",
+                  "title": "Credential stuffing or brute force login",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker uses stolen credentials or brute-forces username/password combinations to impersonate a legitimate user.",
+                  "mitigation": "- Implement rate limiting on login attempts. \n - Use CAPTCHA to prevent automated attacks. \n - Enforce account lockout after repeated failed attempts. \n - Encourage strong passwords and offer multi-factor authentication (MFA).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 62,
+                  "score": ""
+                },
+                {
+                  "id": "783407c4-341b-4ae3-92ab-d8d6ecbbcb93",
+                  "title": "Modification of login data in transit",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker intercepts and alters login credentials (e.g., username, password) during transmission to gain unauthorized access.",
+                  "mitigation": "- Enforce HTTPS with strong TLS configurations. \n - Implement server-side input validation to reject malformed requests. \n - Use secure session tokens (e.g., signed JWTs).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 63,
+                  "score": ""
+                },
+                {
+                  "id": "2fc291a0-f11a-49fd-8f93-9f0c04bf01aa",
+                  "title": "Denial of login actions",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "A malicious user logs in and denies performing actions (e.g., accessing or modifying notes), claiming unauthorized access occurred.",
+                  "mitigation": "- Log login attempts (successful and failed) with timestamps, IP addresses, and user details. \n - Use session tracking to correlate actions to authenticated users. \n - Implement MFA for stronger user attribution.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 64,
+                  "score": ""
+                },
+                {
+                  "id": "ee5c817c-f595-4854-ad85-c533cff770a3",
+                  "title": "Exposure of login credentials",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "An attacker intercepts credentials or session tokens due to vulnerabilities in transmission or storage, compromising user accounts.",
+                  "mitigation": "- Store passwords using strong hashing (e.g., bcrypt, Argon2). \n - Use secure, HttpOnly, and SameSite cookies for session tokens. \n - Ensure HTTPS for all transmission. \n - Restrict database access and audit configurations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 65,
+                  "score": ""
+                },
+                {
+                  "id": "0414eb79-e47b-4733-92f2-5ff89f368abb",
+                  "title": "Overloading the login endpoint",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker floods the login endpoint with requests, preventing legitimate users from accessing the system.",
+                  "mitigation": "- Implement rate limiting on login attempts. \n - Use CAPTCHA to deter automated attacks. \n - Deploy a Web Application Firewall (WAF). \n - Ensure server scalability for high loads.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 66,
+                  "score": ""
+                },
+                {
+                  "id": "4b1f7a25-7bf9-4a76-adf6-b12409e70b62",
+                  "title": "Exploiting login to gain higher privileges",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker exploits vulnerabilities (e.g., session hijacking, weak authentication) to gain unauthorized access to privileged features (e.g., admin rights).",
+                  "mitigation": "- Use secure session management (e.g., short-lived, signed tokens). \n - Implement role-based access control (RBAC) with minimal privileges. \n - Validate authentication flows to prevent session hijacking. \n - Test for privilege escalation vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 67,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -3231,6 +3325,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 61
+    "threatTop": 67
   }
 }
