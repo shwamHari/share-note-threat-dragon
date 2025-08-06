@@ -125,7 +125,7 @@
             "data": {
               "type": "tm.Actor",
               "name": "logged in user",
-              "description": "",
+              "description": "A user that has registered and logged into their account.",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -273,7 +273,7 @@
             "data": {
               "type": "tm.Actor",
               "name": "public visitor",
-              "description": "",
+              "description": "Unregistered/not logged in user. Can view public notes.",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -324,7 +324,7 @@
             },
             "attrs": {
               "text": {
-                "text": "email service"
+                "text": "messaging/sharing service"
               },
               "body": {
                 "stroke": "red",
@@ -420,8 +420,8 @@
             "id": "1e5ca40c-5d45-4084-aac0-8b7d82486446",
             "data": {
               "type": "tm.Actor",
-              "name": "email service",
-              "description": "",
+              "name": "messaging/sharing service",
+              "description": "Service used for sharing links. This could be eg. email, SMS etc.",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -1927,7 +1927,7 @@
             "data": {
               "type": "tm.Process",
               "name": "Create Note",
-              "description": "",
+              "description": "A registered and logged in user creating a note.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2134,7 +2134,7 @@
             "data": {
               "type": "tm.Process",
               "name": "comment note",
-              "description": "",
+              "description": "A logged in user commenting on a public note or a note that has been shared with them",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2231,13 +2231,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -2348,7 +2341,7 @@
             "data": {
               "type": "tm.Process",
               "name": "share note",
-              "description": "",
+              "description": "The process of a note owner sharing their note via a messaging or sharing service. This includes the access level the recipient will have (read or write).",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2445,6 +2438,13 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -2555,7 +2555,7 @@
             "data": {
               "type": "tm.Process",
               "name": "delete comment",
-              "description": "",
+              "description": "The owner of a note deleting comments on their note",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2762,7 +2762,7 @@
             "data": {
               "type": "tm.Process",
               "name": "publicise note",
-              "description": "",
+              "description": "The owner of a note changing the viewing setting of their note (public or private with shared secret access).",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
