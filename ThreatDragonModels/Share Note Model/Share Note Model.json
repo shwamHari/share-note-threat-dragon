@@ -1512,7 +1512,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "note link",
+              "name": "shared secret token/link",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -1525,7 +1525,7 @@
               "threats": []
             },
             "labels": [
-              "note link"
+              "shared secret token/link"
             ],
             "id": "a0fccd88-89d5-44b5-8676-6e92ff8e32fb",
             "source": {
@@ -1543,10 +1543,6 @@
               },
               {
                 "x": 520,
-                "y": 40
-              },
-              {
-                "x": 500,
                 "y": 40
               }
             ]
@@ -1983,6 +1979,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -2066,7 +2063,6 @@
               ]
             },
             "id": "99f397fb-907a-4a13-9431-306b30d6d7ec",
-            "zIndex": 14,
             "data": {
               "type": "tm.Process",
               "name": "share note",
@@ -2103,6 +2099,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 15,
             "ports": {
               "groups": {
                 "top": {
@@ -2186,7 +2183,6 @@
               ]
             },
             "id": "7b72297d-a801-4de7-a35a-ca9a44b0bd85",
-            "zIndex": 15,
             "data": {
               "type": "tm.Process",
               "name": "delete comment",
@@ -2223,6 +2219,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 16,
             "ports": {
               "groups": {
                 "top": {
@@ -2306,7 +2303,6 @@
               ]
             },
             "id": "3318c40f-ec39-4ff8-b444-13905a7e3411",
-            "zIndex": 16,
             "data": {
               "type": "tm.Process",
               "name": "publicise note",
