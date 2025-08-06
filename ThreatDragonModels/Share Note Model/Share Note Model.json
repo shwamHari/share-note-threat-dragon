@@ -1690,6 +1690,10 @@
             },
             "vertices": [
               {
+                "x": 480,
+                "y": 200
+              },
+              {
                 "x": 510,
                 "y": 190
               }
@@ -2227,6 +2231,13 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -2848,13 +2859,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ]
