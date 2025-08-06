@@ -2036,8 +2036,8 @@
                 "text": "comment note"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2134,12 +2134,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "9110c435-f4fd-453c-b4cc-38a027ce10c0",
+                  "title": "Spoofed Comment Process",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Malicious process or request pretending to be Comment on Note process. Malicious processes send forged requests to post comments under another user or process identity.\n",
+                  "mitigation": "API authentication, authorisation checks, secure session management.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "e07fd87f-1aaa-4383-bd85-289b935bcfeb",
+                  "title": "Tampering with Comment Content",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "The commenting process may be tampered with, meaning that when a user submits a comment, it may actually submit a completely different comment or under another username or on a different note altogether",
+                  "mitigation": "Input validation and sanitisation, integrity checks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "1f791866-88b4-4d06-8aac-0c65afffd351",
+                  "title": "Unlogged Comment Actions",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Comment actions are not logged, allowing denial of sharing events.\n",
+                  "mitigation": "Comprehensive logging of comments.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                },
+                {
+                  "id": "6daf3962-abaf-4741-a98d-138748044f57",
+                  "title": "Leakage of Comment Data",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Comments exposed to unauthorised users or via logs/errors. Comments are made publicly available, even if the note itself is not public",
+                  "mitigation": "Avoid logging sensitive data, sanitise logs, secure error handling, permission checks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "5e3ea19e-3b21-4e76-b2ee-99403fa738d9",
+                  "title": "Flooding Comment Process",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Excessive comment submissions overwhelm resources, crashing appplication. ",
+                  "mitigation": "Rate limiting, input validation, load balancing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "6c383e01-d1bd-4223-862c-42d71cab30a6",
+                  "title": "Unauthorised Commenting",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Elevation of privilege",
+                  "description": "A public visitor is able to comment on a note, without signing in or registering. ",
+                  "mitigation": "Enforce authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 2,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -2156,8 +2243,8 @@
                 "text": "share note"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2254,12 +2341,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "413e391a-4304-430c-b967-d2363a7b6537",
+                  "title": "Spoofed Share Note Process",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Malicious process or request pretending to be Share Note process. Someone may send a malicious share link impersonating a real user.",
+                  "mitigation": "API authentication, authorisation checks, secure session management.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "e9790152-b9aa-4d70-b954-371974e14d9d",
+                  "title": "Tampered Sharing Link Generation",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "The Share Note process generates or accepts tampered sharing links that grant unintended access eg. at incorrect access levels. Share Note process may actually perform some unintended action.\n",
+                  "mitigation": "Input validation, cryptographically signed links.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "31d96688-6714-424a-99b6-96c734b640d8",
+                  "title": "Unlogged Share Note Actions",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Sharing actions are not logged, allowing denial of sharing events.\n",
+                  "mitigation": "Comprehensive logging of sharing operations.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "5e478a6e-c3b7-4559-a920-924bed1e43ca",
+                  "title": "Unintended Exposure of Share Link or Permissions",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Share Note process leaks sharing links or permissions beyond intended recipients. This may happen via eg. error logs exposing the link.\n",
+                  "mitigation": "Avoid logging sensitive data, sanitise logs, secure error handling, permission checks, secure link storage\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "513c26e9-9cc2-458f-9ee8-6a55df510804",
+                  "title": "Abuse of Share Note Process",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Flooding the sharing endpoint to exhaust system resources or disrupt service.",
+                  "mitigation": "Rate limiting, load balancing, abuse detection",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                },
+                {
+                  "id": "29701e8b-54fe-4360-9da8-f1bb7780ce2e",
+                  "title": "Privilege Escalation within the Share Note Process",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Share Note process inadvertently grants edit permissions instead of read permission level via link tampering or logic flaws.\n",
+                  "mitigation": "Enforce strict permission validation on sharing links.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -2276,8 +2450,8 @@
                 "text": "delete comment"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2374,12 +2548,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "3634b2d5-30c7-412b-af81-54114eef1873",
+                  "title": "Unwanted Deleted Comments",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Process receives forged delete requests from unauthorised entities. Delete requests may be unwanted by the note owner, but someone has impersonated the owner to delete comments",
+                  "mitigation": "API authentication, authorisation checks, secure session management.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                },
+                {
+                  "id": "2627923b-ddae-409c-acdb-8543f935fb08",
+                  "title": "Tampered Delete Requests",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Malformed or modified delete requests causing unintended comment deletions.\n",
+                  "mitigation": "Input validation and integrity checks on delete requests.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                },
+                {
+                  "id": "db303e1a-3b19-4e7e-abf3-4dbea74d0c7a",
+                  "title": "Unlogged Delete Comment Actions",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Delete comment actions not logged, enabling repudiation",
+                  "mitigation": "Comprehensive logging of comment deletions.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                },
+                {
+                  "id": "472ac0e6-d795-4d2e-ba6b-0b7e50abb6bc",
+                  "title": "Deleted Comments Recoverable",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Deleted comment data accessible after deletion due to improper handling",
+                  "mitigation": "Secure data deletion policies. Delete the comment data properly\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                },
+                {
+                  "id": "c5c3ad2b-eb16-465d-83c2-0b770aeb6511",
+                  "title": "Mass Delete Request Flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding delete comment API causing service disruption.",
+                  "mitigation": "Rate limiting, load balancing, abuse detection",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "656bc557-c20f-4ea8-858f-c3db8288c96a",
+                  "title": "Unauthorised Deleting of Comments",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Non-owners of the note are able to delete comments. ",
+                  "mitigation": "Enforce strict permission checks when attempting to delete comments, ensure user deleting the comment is the owner",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -2396,8 +2657,8 @@
                 "text": "publicise note"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2494,12 +2755,106 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "ba5477d6-0525-4d89-bb19-65e48037e5be",
+                  "title": "Spoofed Public Toggle Requests",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Process receives forged requests from unauthorised entities to toggle note visibility. This could make a note public when owner only wants it private and vice versa. ",
+                  "mitigation": "API authentication, authorisation checks, authenticate toggle operations",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "3d4ee80a-1a08-45bf-9f74-f68c93df764c",
+                  "title": "Tampered Public Toggle Data",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Manipulation of toggle request function which may cause unwanted and unintended actions. Manipulation of toggle request data causing unauthorised visibility changes.\n",
+                  "mitigation": "Secure toggling functionality, Input validation, integrity checks ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                },
+                {
+                  "id": "bfb15c26-69cc-434c-85d2-23b093fd7a02",
+                  "title": "Unlogged Publicise Actions",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Publicise actions not logged, enabling denial of action.",
+                  "mitigation": "Comprehensive logging of Publicise actions.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                },
+                {
+                  "id": "ed8dbbf6-2626-46d8-91e7-e3fb3e3ccbd0",
+                  "title": "Accidental Public Exposure via Process",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Process fails to warn or confirm before making notes public, leading to accidental exposure.\n",
+                  "mitigation": "UI warnings, confirmation dialogs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
+                },
+                {
+                  "id": "2b70baf5-b7c3-4188-9960-a464ef8d218d",
+                  "title": "Publicise Note Request Flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding Publicise Note API causing service disruption.",
+                  "mitigation": "Rate limiting, load balancing, abuse detection",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                },
+                {
+                  "id": "b62fe82f-502d-4fd0-be1c-4bca3605f3eb",
+                  "title": "Unauthorised Public Toggle",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Non-owners of the note are able to change publicity of the note. ",
+                  "mitigation": "Strict authorisation and authentication enforcement.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ]
@@ -2507,6 +2862,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 12
+    "threatTop": 36
   }
 }
