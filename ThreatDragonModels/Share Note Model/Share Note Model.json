@@ -475,11 +475,13 @@
                 "text": "user database"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -576,13 +578,79 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "26fc7b82-f90b-4cf8-9b30-c8aceecd4282",
+                  "title": "Unauthorized modification of user data",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "An attacker exploits vulnerabilities (e.g., SQL injection, weak access controls) to alter user data in the database, such as changing passwords or permissions.",
+                  "mitigation": "- Implement strict input validation and sanitization to prevent SQL injection. \n- Use parameterized queries for database operations. \n- Enforce least privilege access controls for database accounts. \n- Regularly audit database configurations for vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 77,
+                  "score": ""
+                },
+                {
+                  "id": "bba66f84-6707-43ab-be96-00a1546b6a7e",
+                  "title": "Exposure of sensitive user data",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "An attacker gains unauthorized access to the database (e.g., via misconfigured access controls or server vulnerabilities), exposing credentials or personal information.",
+                  "mitigation": "- Store passwords using strong hashing (e.g., bcrypt, Argon2). \n- Encrypt sensitive data (e.g., emails) in the database. \n- Restrict database access to the web application with minimal permissions. \n- Implement monitoring and logging for unauthorized access attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 78,
+                  "score": ""
+                },
+                {
+                  "id": "10e28403-b72f-4e18-a941-219b53660ccd",
+                  "title": "Disrupting database availability",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "An attacker overwhelms the database with queries (e.g., via malicious application requests) or exploits vulnerabilities to crash it, preventing user authentication or data access.",
+                  "mitigation": "- Implement query rate limiting and optimization in the database. \n- Use a Web Application Firewall (WAF) to filter malicious requests. \n- Ensure database scalability and redundancy. \n- Monitor database performance and set alerts for unusual activity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 79,
+                  "score": ""
+                },
+                {
+                  "id": "660a8240-7b2f-453a-9045-983bd67476d7",
+                  "title": "Denial of database modifications",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "A user or attacker modifies user data (e.g., changes a password or permission) and denies performing the action, causing disputes or undetected malicious changes.",
+                  "mitigation": "- Log all database operations (e.g., INSERT, UPDATE, DELETE) with timestamps, user IDs, and IP addresses. \n- Maintain an audit trail for data changes. \n- Implement version control for critical user data (e.g., permission changes). \n- Use digital signatures for high-risk operations (if applicable).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 80,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -1154,17 +1222,7 @@
                 "x": 410,
                 "y": 530
               }
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            ]
           },
           {
             "shape": "flow",
@@ -3461,6 +3519,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 76
+    "threatTop": 80
   }
 }
