@@ -644,13 +644,6 @@
                 "informationDisclosure": 1,
                 "denialOfService": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -988,7 +981,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1005,16 +999,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user id",
-              "description": "",
+              "description": "User ID",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "e0494695-0111-49f7-8847-d3563372e022",
+                  "title": "User ID manipulation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "The user ID could be intercepted in order to impersonate another user by modifying the returned user ID. This could lead to unauthorized access",
+                  "mitigation": "Enforce HTTPS, backend should not rely on client-supplied user ID's, use server-side session storage",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 87,
+                  "score": ""
+                },
+                {
+                  "id": "b3f216db-ba5f-4b2f-b02c-f4707bb740ce",
+                  "title": "Exposed user ID",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "The user ID could be intercepted, allowing attafckers to use disclosed user ID's to find data associated with other users",
+                  "mitigation": "Use HTTPS, use UUID to not expose raw ID's, do not expose unnecessary user metadata in reponse",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 88,
+                  "score": ""
+                },
+                {
+                  "id": "68187bad-377d-4e00-a646-af420d91b5f6",
+                  "title": "Repeated login token requests",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "The login endpoint could be abused to cause repeated authentications, overloading the system",
+                  "mitigation": "Rate limit login attempts, monitor and alert for abnormal traffic",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 89,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "user id"
@@ -1027,13 +1066,24 @@
             "target": {
               "cell": "fce65a3b-712b-4c0c-911a-2d19fac158da",
               "port": "b332ec9f-a17c-48ea-8cdf-325c2411815a"
-            }
+            },
+            "vertices": [
+              {
+                "x": 510,
+                "y": 410
+              },
+              {
+                "x": 480,
+                "y": 390
+              }
+            ]
           },
           {
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1050,16 +1100,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user details",
-              "description": "",
+              "description": "Username or email, and password",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "6b610faa-31a1-4890-b8b1-8e0177985d25",
+                  "title": "Manipulation of login credentials",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Login requests are altered while in transit, changing various fields possibly allowing unauthorized access or account hijacking.",
+                  "mitigation": "Enforce HTTPS, validation and sanitization of all login input",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 84,
+                  "score": ""
+                },
+                {
+                  "id": "a991b840-cb74-42be-a343-27929d98014c",
+                  "title": "Exposed login data",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Login data can be exposed during transit if it is not properly protected, this could allow attackers to reuse credientials across systems.",
+                  "mitigation": "Enforce HTTPS, do not log senstive data such as passwords or auth tokens, mask sensitive information such as the password in the UI",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 85,
+                  "score": ""
+                },
+                {
+                  "id": "efacd988-d303-469e-aa1c-176aeef781e2",
+                  "title": "Brute-Force attacks",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "The login endpoint could be flooded with repeated log in attempts to guess user credentials",
+                  "mitigation": "Rate limit login attempts, lock accounts if there are many repeated login attempts, and use CAPCHAs",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 86,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "user details"
@@ -1072,13 +1167,32 @@
             "target": {
               "cell": "848f4e3c-d035-4982-8bbc-6f51baed3bf2",
               "port": "cb1bbb6c-ca1a-4056-9424-26cd5979da5d"
-            }
+            },
+            "vertices": [
+              {
+                "x": 430,
+                "y": 430
+              },
+              {
+                "x": 470,
+                "y": 430
+              },
+              {
+                "x": 480,
+                "y": 440
+              },
+              {
+                "x": 520,
+                "y": 460
+              }
+            ]
           },
           {
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1095,16 +1209,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user details",
-              "description": "",
+              "description": "Username, password, email",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "b01b19d0-e335-4e51-9843-40b04a120ae6",
+                  "title": "Man-in-the-Middle Attack",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker alters the registration form data to inject content that is malicious.",
+                  "mitigation": "Use integrity checks (hashing, signed tokens), validate and sanitize all input on the server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 81,
+                  "score": ""
+                },
+                {
+                  "id": "0a43a6f4-4327-41b6-a2e4-a04593937e01",
+                  "title": "Exposed registration data",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Registration data is exposed in data flow due to transmission that is not secure.",
+                  "mitigation": "Encrypt all traffic with HTTPS, avoid logging any sensitive data from the user",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 82,
+                  "score": ""
+                },
+                {
+                  "id": "7fb4a703-abc7-4e22-a92d-b4595658d3bf",
+                  "title": "Endpoint Flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacked could send a large amount of fake requests, which would lead to the system being overloaded and prevent legitimate users from registering. ",
+                  "mitigation": "Implement rate limiting, use CAPCHAs, monitor and alert for abnormal traffic volumes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 83,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 2,
+                "denialOfService": 2
+              }
             },
             "labels": [
               "user details"
@@ -1117,7 +1276,21 @@
             "target": {
               "cell": "ef32ab02-61c2-4382-bb7e-a6c2a3df70a1",
               "port": "cb1bbb6c-ca1a-4056-9424-26cd5979da5d"
-            }
+            },
+            "vertices": [
+              {
+                "x": 450,
+                "y": 490
+              },
+              {
+                "x": 520,
+                "y": 490
+              },
+              {
+                "x": 560,
+                "y": 510
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1279,7 +1452,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1296,16 +1470,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user details",
-              "description": "",
+              "description": "Username, password, email",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "ccad2f0e-fc4d-4326-8fec-dee5203163bf",
+                  "title": "Malicious input injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "The note contents could be used for malicious injections  into the user database (SQL injections), through corrupted fields",
+                  "mitigation": "Validate and santize all registration input on the server side before writing to the database, enforce strict schema validation in the database layer",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 102,
+                  "score": ""
+                },
+                {
+                  "id": "4278fdea-8710-4227-9c73-7fd559460de5",
+                  "title": "Leaked registration data",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "If the data flow is insecure, sensitive user data may be exposed while being written to the database",
+                  "mitigation": "Use HTTPS, store passwords with hashing algorithms, mask sensitive data in logs and error responses",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 103,
+                  "score": ""
+                },
+                {
+                  "id": "bb8a6819-7973-4869-bc71-57294308922e",
+                  "title": "Registration flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A high volume of user registrations may be created in a short time to overload the system",
+                  "mitigation": "Rate limit registration attempts per IP/user agent, implement CAPCHAs, monitor and alert for abnormal traffic",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 104,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "user details"
@@ -1320,6 +1539,10 @@
               "port": "3af9aa28-92a8-4727-a203-fd601c84cc61"
             },
             "vertices": [
+              {
+                "x": 940,
+                "y": 440
+              },
               {
                 "x": 960,
                 "y": 420
@@ -1493,7 +1716,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1510,16 +1734,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user comment text",
-              "description": "",
+              "description": "Comment plain text",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "dfefd574-1f41-460f-9f04-61c6011d1092",
+                  "title": "Malicious input injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "The comment text could be tampered with to inject malicious content (scripts, SQL injections) to affect backend processes or other users",
+                  "mitigation": "Perform strict server-side input sanitization, log suspisious inputs for manual review, use secure libraries to protect against injections and attacks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 96,
+                  "score": ""
+                },
+                {
+                  "id": "134cc0f4-d463-4c32-88fd-d0300a61700c",
+                  "title": "Leaked comment metadata",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Comment information could contain senstive information that may become public accessible of the note is shared without proper control",
+                  "mitigation": "Educate users not to share private information, sanitize and audit outputs for potential leaks of sensitive information",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 97,
+                  "score": ""
+                },
+                {
+                  "id": "19ddfdb7-7b90-4b80-9ae6-930bfa1d2611",
+                  "title": "Comment Flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A high volume of comments may be sent in a short time to overload the system",
+                  "mitigation": "Rate limit comment submissions per user and/or per note, implement CAPCHAs, apply length limits on the comments",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 98,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "user comment text"
@@ -1538,7 +1807,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1559,12 +1829,57 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "44160c25-35ce-430c-a13b-6a4bd1d59df7",
+                  "title": "Forgery of comment deletion request",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "The comment deletion request could be tampered with by modifying the comment ID or note ID ot delete comments they dont own or were not meant to delete.",
+                  "mitigation": "Enforce strict authorization checks server side, use HTTPS",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 93,
+                  "score": ""
+                },
+                {
+                  "id": "8b22081f-1f78-4736-b145-70a33617a2bc",
+                  "title": "Leaked comment metadata",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "The comment information could be leaked in transit, revealing data from the comment.",
+                  "mitigation": "Use HTTPS, only send minimal identifiers in the deletion request (ID's, not comment plaintext)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 94,
+                  "score": ""
+                },
+                {
+                  "id": "c812a24c-2e1e-42eb-ae1e-7c19eb48f35d",
+                  "title": "Abuse of delete comment endpoint",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Requests of comment deletions could be rapidly sent to overload the system, slowing it down",
+                  "mitigation": "Rate limit comment deletions per user, monitor and alert for abnormal traffic",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 95,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "comment information"
@@ -1648,7 +1963,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1665,16 +1981,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "public boolean",
-              "description": "",
+              "description": "Boolean (true/false)",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "8db44eb9-1498-4f41-bc73-55c3342d469f",
+                  "title": "Malicious change to note visibility",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "The visibility boolean could be intercepted and altered during transmation, making a private note public which could leak sensitive data, or forcing a note to be public",
+                  "mitigation": "Enforce HTTPS, use strict input validation so only booleans are accepted, validate changes server-side",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 90,
+                  "score": ""
+                },
+                {
+                  "id": "eab2eeb3-6d92-4d54-ae0a-787d2a270351",
+                  "title": "Exposed note metadata",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "If the public boolean is intercepted it could reveal user intentions, allowing attackers to possible detect when notes are being made public",
+                  "mitigation": "Use HTTPS, do not expose the public booleans unnecessarily, monitor and restrict metadata access to authenticated users only.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 91,
+                  "score": ""
+                },
+                {
+                  "id": "716724ff-7d96-4c94-8e60-826cd4dccd29",
+                  "title": "Abuse of publicise toggle",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Repeated toggle requests could be sent, overwhelming the system, possibly slowing it down.",
+                  "mitigation": "Rate limit visiblity updates per note or per user, monitor and alert for abnormal traffic",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 92,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "public boolean"
@@ -1687,7 +2048,17 @@
             "target": {
               "cell": "3318c40f-ec39-4ff8-b444-13905a7e3411",
               "port": "1957d505-d5fe-4806-a624-6de293e219c3"
-            }
+            },
+            "vertices": [
+              {
+                "x": 490,
+                "y": 350
+              },
+              {
+                "x": 600,
+                "y": 420
+              }
+            ]
           },
           {
             "shape": "trust-boundary-curve",
@@ -1745,7 +2116,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1766,12 +2138,57 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "64a55c46-7168-4833-90c3-1b122b0eeb23",
+                  "title": "Malicious input injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "The note contents could be used for malicious injections (scripts, SQL injections), through malicious text, images or hyperlinks leading to malicious sites.",
+                  "mitigation": "Sanitize and validate all note content on the server side, restrict allowed file types and size for images use content sanitizers for text and HTML",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 99,
+                  "score": ""
+                },
+                {
+                  "id": "8d4eaf3b-df8d-47cd-a1fd-15d8f488fa05",
+                  "title": "Leaked data in notes",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Notes may accidently include sensitive information from a user, unintentially exposing confidential data",
+                  "mitigation": "Educate users not to share private information, sanitize and audit outputs for potential leaks of sensitive information, allow users to preview public notes before publishing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 100,
+                  "score": ""
+                },
+                {
+                  "id": "91cf264e-140a-40e8-9eee-2de6651c3292",
+                  "title": "Note creation flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A high volume of notes may be created in a short time to overload the system",
+                  "mitigation": "Rate limit note creations per user, implement CAPCHAs, apply length limits on the notes in plain test and image size",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 101,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "note content"
@@ -1791,7 +2208,7 @@
                 "y": 210
               },
               {
-                "x": 470,
+                "x": 490,
                 "y": 210
               },
               {
@@ -1846,7 +2263,7 @@
             },
             "vertices": [
               {
-                "x": 540,
+                "x": 470,
                 "y": 180
               }
             ]
@@ -2010,7 +2427,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -2027,16 +2445,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "public boolean",
-              "description": "",
+              "description": "Boolean (true/false)",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "7414451b-a965-4466-a06d-323ab1a365e8",
+                  "title": "Modification of publicise note toggle",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "The public boolean value could be tampered with during transmission to the database, potentially changing a note's visibility without authorization",
+                  "mitigation": "Encrypt all internal communications, implement strict server-side validation, user database constraints to enforce valid boolean values",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": ""
+                },
+                {
+                  "id": "920cc20d-72ad-4d5c-b9e8-c66b356dc6cf",
+                  "title": "Leaked note visibility status",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "The visibility status could be exposed in logs, leading to the leakage of metadata about note sharing",
+                  "mitigation": "Limit access to the database to authorized people, avoid logging senstive metadata unnecessarily",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 106,
+                  "score": ""
+                },
+                {
+                  "id": "313569ab-9db4-4c8e-b29a-33075ca8e6a3",
+                  "title": "Publicise note flooding",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "A high volume of note visiblity updates may be created in a short time to degrade database performance",
+                  "mitigation": "Rate limit public note toggles per note and/or per user, monitor database performance and abnormal traffic",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 107,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "public boolean"
@@ -2058,6 +2521,10 @@
               {
                 "x": 920,
                 "y": 370
+              },
+              {
+                "x": 960,
+                "y": 350
               },
               {
                 "x": 980,
@@ -3519,6 +3986,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 80
+    "threatTop": 107
   }
 }
