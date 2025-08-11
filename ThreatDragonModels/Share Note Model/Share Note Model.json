@@ -757,17 +757,76 @@
             "data": {
               "type": "tm.Store",
               "name": "notes database",
-              "description": "",
+              "description": "The database that stores all information that each note contains. Includes hypelinks, images, text.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "02c20df2-4126-4918-a587-11db866bc40c",
+                  "title": "Unauthorized Changes of Notes in Database",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "An attacker gains write access to the notes database (e.g., via SQL injection or compromised credentials) and alters note text, images, or links without authorization. ",
+                  "mitigation": "Implement parameterized queries and ORM to prevent SQL injection. Maintain integrity checks (hashes) for stored note content. Regularly monitor and log all database write operations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 108,
+                  "score": ""
+                },
+                {
+                  "id": "c4e7598d-c9f5-453a-9b79-3886e8383605",
+                  "title": "Private Note Data Leak",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Database or app flaw exposes private/shared notes to unauthorized users.",
+                  "mitigation": "Encrypt data at rest, enforce auth checks, limit query output, segment DB from internet.\n\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 109,
+                  "score": ""
+                },
+                {
+                  "id": "0d6fe5e8-73bc-418b-98cf-f8037816cb19",
+                  "title": "Database Overload (DoS)",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excessive read/write requests exhaust DB resources, blocking note access.",
+                  "mitigation": "Rate limit requests, optimize queries, cap connections, block abusive IPs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 110,
+                  "score": ""
+                },
+                {
+                  "id": "7c7ac859-63ab-4db1-8d9f-54c6ce532571",
+                  "title": "Untracked Note Changes",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Lack of audit logs lets users modify/delete notes and deny it.",
+                  "mitigation": "Keep immutable logs with user ID, timestamp, secure them from tampering.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 111,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 3,
+                "repudiation": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 2
+              }
             }
           },
           {
@@ -2323,7 +2382,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -2340,16 +2400,35 @@
             "data": {
               "type": "tm.Flow",
               "name": "shared secret token/link",
-              "description": "",
+              "description": "Messaging service sends a unique secret link to the Share Note process for access control.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "23ad9b79-9e59-48bd-a7a3-d578581c4e56",
+                  "title": "Intercepted Share Token from Messaging Service",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "If the token is intercepted in transit or guessed due to low randomness, an attacker could access the shared note without authorization.",
+                  "mitigation": "- Use long, cryptographically random tokens.\n- Transmit only over HTTPS.\n- Expire tokens quickly or after single use.\n- Log and monitor token use for anomalies.\n\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 112,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "shared secret token/link"
@@ -2421,7 +2500,13 @@
             "target": {
               "cell": "fce65a3b-712b-4c0c-911a-2d19fac158da",
               "port": "328f919b-1ba7-40e3-91e3-eca790934dd1"
-            }
+            },
+            "vertices": [
+              {
+                "x": 580,
+                "y": 60
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -3155,8 +3240,8 @@
           },
           {
             "position": {
-              "x": 685,
-              "y": -50.000000000000014
+              "x": 680,
+              "y": -60
             },
             "size": {
               "width": 70,
@@ -3986,6 +4071,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 107
+    "threatTop": 112
   }
 }
