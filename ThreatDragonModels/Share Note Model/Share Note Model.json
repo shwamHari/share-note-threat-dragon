@@ -329,7 +329,7 @@
               "body": {
                 "stroke": "red",
                 "strokeWidth": 2.5,
-                "strokeDasharray": null
+                "strokeDasharray": "4 3"
               }
             },
             "visible": true,
@@ -423,8 +423,8 @@
               "name": "messaging/sharing service",
               "description": "Service used for sharing links. This could be eg. email, SMS etc.",
               "isTrustBoundary": false,
-              "outOfScope": false,
-              "reasonOutOfScope": "",
+              "outOfScope": true,
+              "reasonOutOfScope": "This service is outside of the web app",
               "hasOpenThreats": true,
               "providesAuthentication": false,
               "threats": [
