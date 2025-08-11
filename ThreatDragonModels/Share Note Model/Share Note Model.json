@@ -139,7 +139,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker could impersonate a legitimate user eg. by credentials of user being stolen or guessed.",
-                  "mitigation": "Implement secure authentication mechanisms such as password hashing, session tokens, and optionally multi-factor authentication.\n\n",
+                  "mitigation": "- Implement password hashing to securely store user passwords.\n- Implement session tokens to manage and verify authenticated sessions.\n- Optionally implement multi-factor authentication (MFA) for additional security.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 1,
@@ -152,7 +152,7 @@
                   "severity": "Low",
                   "type": "Repudiation",
                   "description": " User could deny having created, edited, or shared a note.",
-                  "mitigation": "Maintain secure audit logs of all user actions, including timestamps and user IDs.",
+                  "mitigation": "- Maintain secure audit logs of all user actions.\n- Include timestamps for each logged action.\n- Include user IDs associated with each action.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 2,
@@ -160,8 +160,8 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
-                "repudiation": 2
+                "spoofing": 3,
+                "repudiation": 3
               }
             }
           },
@@ -287,7 +287,7 @@
                   "severity": "Medium",
                   "type": "Spoofing",
                   "description": "An attacker may register with fake or spoofed credentials to abuse the system.",
-                  "mitigation": "Enforce CAPTCHA, validate email addresses, and rate-limit registration attempts.",
+                  "mitigation": "- Enforce CAPTCHA to prevent automated registrations.\n- Validate email addresses during registration.\n- Rate-limit registration attempts to deter abuse.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 3,
@@ -300,7 +300,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Since public users are anonymous, any interactions (like comments) cannot be definitively attributed.\n",
-                  "mitigation": "Restrict comment functionality to authenticated users, or associate anonymous actions with temporary session IDs and log them.",
+                  "mitigation": "- Restrict comment functionality to authenticated users.\n- Alternatively, associate anonymous actions with temporary session IDs.\n- Log all anonymous actions linked to these session IDs.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 4,
@@ -308,8 +308,8 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
-                "repudiation": 2
+                "spoofing": 3,
+                "repudiation": 3
               }
             }
           },
@@ -435,7 +435,7 @@
                   "severity": "Medium",
                   "type": "Spoofing",
                   "description": "An attacker could spoof the identity of the system’s email service, sending fake or malicious note links to users.",
-                  "mitigation": "Use protections like SPF, DKIM, and DMARC to prevent email spoofing and ensure email authenticity.\n\n",
+                  "mitigation": "- SPF (Sender Policy Framework) – Verifies that emails are sent from authorized mail servers for your domain.\n- DKIM (DomainKeys Identified Mail) – Uses a cryptographic signature to ensure email content hasn’t been altered in transit.\n- DMARC (Domain-based Message Authentication, Reporting, and Conformance) – Aligns SPF and DKIM to authenticate emails, block spoofed messages, and provide reporting.\n\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 5,
@@ -448,7 +448,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "There may be no reliable way to prove which user initiated a shared link email if logging is not enforced.\n",
-                  "mitigation": "Log all link generation actions server-side, including information like the userID, access level, timestamp, and recipient emails/user ids.",
+                  "mitigation": "- Log the user ID of the person who generated the link.\n- Log the access level associated with the generated link.\n- Log the timestamp of when the link was generated.\n- Log the recipient emails/user IDs the link was sent to.\n\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 6,
@@ -456,8 +456,8 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 3,
-                "repudiation": 1
+                "spoofing": 4,
+                "repudiation": 2
               }
             }
           },
@@ -777,7 +777,7 @@
                   "severity": "Critical",
                   "type": "Tampering",
                   "description": "An attacker gains write access to the notes database (e.g., via SQL injection or compromised credentials) and alters note text, images, or links without authorization. ",
-                  "mitigation": "Implement parameterized queries and ORM to prevent SQL injection. Maintain integrity checks (hashes) for stored note content. Regularly monitor and log all database write operations.",
+                  "mitigation": "- Implement parameterized queries and use an ORM to prevent SQL injection.\n- Maintain integrity checks (hashes) for stored note content. \n- Regularly monitor and log all database write operations.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 108,
@@ -790,7 +790,7 @@
                   "severity": "High",
                   "type": "Information disclosure",
                   "description": "Database or app flaw exposes private/shared notes to unauthorized users.",
-                  "mitigation": "Encrypt data at rest, enforce auth checks, limit query output, segment DB from internet.\n\n",
+                  "mitigation": "- Encrypt data at rest to protect stored information.\n- Enforce authentication checks before granting access.\n- Limit query output to only necessary data.\n- Segment the database from the internet to reduce exposure.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 109,
@@ -803,7 +803,7 @@
                   "severity": "Low",
                   "type": "Denial of service",
                   "description": "Excessive read/write requests exhaust DB resources, blocking note access.",
-                  "mitigation": "Rate limit requests, optimize queries, cap connections, block abusive IPs.",
+                  "mitigation": "- Rate limit requests to prevent overload.\n- Optimize queries for better performance.\n- Cap the number of connections to the system.\n- Block abusive IP addresses to enhance security.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 110,
@@ -816,7 +816,7 @@
                   "severity": "Low",
                   "type": "Repudiation",
                   "description": "Lack of audit logs lets users modify/delete notes and deny it.",
-                  "mitigation": "Keep immutable logs with user ID, timestamp, secure them from tampering.",
+                  "mitigation": "- Keep immutable logs of all actions.\n- Include user ID and timestamp in each log entry.\n- Secure logs to prevent tampering or unauthorized modification.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 111,
@@ -824,10 +824,10 @@
                 }
               ],
               "threatFrequency": {
-                "tampering": 3,
-                "repudiation": 2,
-                "informationDisclosure": 2,
-                "denialOfService": 2
+                "tampering": 4,
+                "repudiation": 3,
+                "informationDisclosure": 3,
+                "denialOfService": 3
               }
             }
           },
@@ -3154,7 +3154,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker uses stolen credentials or brute-forces username/password combinations to impersonate a legitimate user.",
-                  "mitigation": "- Implement rate limiting on login attempts. \n - Use CAPTCHA to prevent automated attacks. \n - Enforce account lockout after repeated failed attempts. \n - Encourage strong passwords and offer multi-factor authentication (MFA).",
+                  "mitigation": "- Implement rate limiting on login attempts. \n- Use CAPTCHA to prevent automated attacks. \n- Enforce account lockout after repeated failed attempts. \n- Encourage strong passwords and offer multi-factor authentication (MFA).",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 62,
@@ -3167,7 +3167,7 @@
                   "severity": "High",
                   "type": "Tampering",
                   "description": "An attacker intercepts and alters login credentials (e.g., username, password) during transmission to gain unauthorized access.",
-                  "mitigation": "- Enforce HTTPS with strong TLS configurations. \n - Implement server-side input validation to reject malformed requests. \n - Use secure session tokens (e.g., signed JWTs).",
+                  "mitigation": "- Enforce HTTPS with strong TLS configurations. \n- Implement server-side input validation to reject malformed requests. \n - Use secure session tokens (e.g., signed JWTs).",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 63,
@@ -3180,7 +3180,7 @@
                   "severity": "Low",
                   "type": "Repudiation",
                   "description": "A malicious user logs in and denies performing actions (e.g., accessing or modifying notes), claiming unauthorized access occurred.",
-                  "mitigation": "- Log login attempts (successful and failed) with timestamps, IP addresses, and user details. \n - Use session tracking to correlate actions to authenticated users. \n - Implement MFA for stronger user attribution.",
+                  "mitigation": "- Log login attempts (successful and failed) with timestamps, IP addresses, and user details. \n- Use session tracking to correlate actions to authenticated users. \n- Implement MFA for stronger user attribution.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 64,
@@ -3193,7 +3193,7 @@
                   "severity": "Critical",
                   "type": "Information disclosure",
                   "description": "An attacker intercepts credentials or session tokens due to vulnerabilities in transmission or storage, compromising user accounts.",
-                  "mitigation": "- Store passwords using strong hashing (e.g., bcrypt, Argon2). \n - Use secure, HttpOnly, and SameSite cookies for session tokens. \n - Ensure HTTPS for all transmission. \n - Restrict database access and audit configurations.",
+                  "mitigation": "- Store passwords using strong hashing (e.g., bcrypt, Argon2). \n- Use secure, HttpOnly, and SameSite cookies for session tokens. \n-  Ensure HTTPS for all transmission. \n - Restrict database access and audit configurations.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 65,
@@ -3206,7 +3206,7 @@
                   "severity": "Medium",
                   "type": "Denial of service",
                   "description": "An attacker floods the login endpoint with requests, preventing legitimate users from accessing the system.",
-                  "mitigation": "- Implement rate limiting on login attempts. \n - Use CAPTCHA to deter automated attacks. \n - Deploy a Web Application Firewall (WAF). \n - Ensure server scalability for high loads.",
+                  "mitigation": "- Implement rate limiting on login attempts. \n- Use CAPTCHA to deter automated attacks. \n- Deploy a Web Application Firewall (WAF). \n- Ensure server scalability for high loads.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 66,
@@ -3219,7 +3219,7 @@
                   "severity": "Critical",
                   "type": "Elevation of privilege",
                   "description": "An attacker exploits vulnerabilities (e.g., session hijacking, weak authentication) to gain unauthorized access to privileged features (e.g., admin rights).",
-                  "mitigation": "- Use secure session management (e.g., short-lived, signed tokens). \n - Implement role-based access control (RBAC) with minimal privileges. \n - Validate authentication flows to prevent session hijacking. \n - Test for privilege escalation vulnerabilities.",
+                  "mitigation": "- Use secure session management (e.g., short-lived, signed tokens).  \n- Implement role-based access control (RBAC) with minimal privileges. \n- Validate authentication flows to prevent session hijacking. \n - Test for privilege escalation vulnerabilities.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 67,
@@ -3227,12 +3227,12 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -3361,7 +3361,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker or malicious internal component sends forged requests pretending to be the Create Note process, creating notes without authorisation.\n",
-                  "mitigation": "Authenticate API calls internally, verify caller identites\n",
+                  "mitigation": "- Authenticate API calls within the system to ensure they originate from trusted sources.\n- Verify the identities of callers to prevent unauthorized access.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 7,
@@ -3374,7 +3374,7 @@
                   "severity": "Critical",
                   "type": "Tampering",
                   "description": "Data passed into the Create Note process is manipulated en route or internally e.g. altering note text, images or links.",
-                  "mitigation": "Input validation, cryptographic signing of data, integrity checks.\n",
+                  "mitigation": "- Perform thorough input validation to ensure data accuracy and security.\n- Use cryptographic signing to verify the authenticity and integrity of data.\n- Implement robust integrity checks to detect and prevent data tampering.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 8,
@@ -3387,7 +3387,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Create Note process operations are not logged, enabling denial of note creation events.\n",
-                  "mitigation": "Log all note creation events with timestamps and process identifiers.\n",
+                  "mitigation": "- Log every note creation event with precise timestamps.\n- Include relevant process identifiers for tracking and auditing purposes.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 9,
@@ -3400,7 +3400,7 @@
                   "severity": "TBD",
                   "type": "Information disclosure",
                   "description": "The Create Note process unintentionally exposes note data e.g. via logs or error messages.",
-                  "mitigation": "Avoid logging sensitive data, sanitise logs, secure error handling.\n",
+                  "mitigation": "- Prevent logging of any sensitive data to protect user privacy.\n- Sanitize logs to remove or mask confidential information before storage.\n- Implement secure error handling to avoid exposing sensitive details through error messages.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 10,
@@ -3413,7 +3413,7 @@
                   "severity": "High",
                   "type": "Denial of service",
                   "description": "Flooding the Create Note process with requests causing resource exhaustion or crashing.\n",
-                  "mitigation": "Rate limiting, load balancing.\n",
+                  "mitigation": "- Implement rate limiting to control and restrict the number of requests per user or IP.\n- Utilize load balancing to evenly distribute incoming traffic across servers for optimal performance and reliability.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 11,
@@ -3426,7 +3426,7 @@
                   "severity": "High",
                   "type": "Elevation of privilege",
                   "description": "The Create Note process might be exploited to bypass permission checks, allowing note creation with elevated privileges, such as creating notes under another user’s identity or with permissions the requester should not have.\n",
-                  "mitigation": "Enforce strict server-side authorisation on note creation requests, ensuring the requester only creates notes they are permitted to, principle of least privilege.",
+                  "mitigation": "- Enforce strict server-side authorization on note creation requests.\n- Ensure that users can only create notes they have explicit permission for, following the principle of least privilege.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 12,
@@ -3434,12 +3434,12 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -3568,7 +3568,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "Malicious process or request pretending to be Comment on Note process. Malicious processes send forged requests to post comments under another user or process identity.\n",
-                  "mitigation": "API authentication, authorisation checks, secure session management.\n",
+                  "mitigation": "- Implement robust API authentication to verify user identities.\n- Conduct thorough authorization checks to ensure users have appropriate access rights.\n- Maintain secure session management to protect and manage user sessions safely.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 19,
@@ -3581,7 +3581,7 @@
                   "severity": "Medium",
                   "type": "Tampering",
                   "description": "The commenting process may be tampered with, meaning that when a user submits a comment, it may actually submit a completely different comment or under another username or on a different note altogether",
-                  "mitigation": "Input validation and sanitisation, integrity checks",
+                  "mitigation": "- Perform comprehensive input validation and sanitization to ensure data safety and correctness.\n- Implement thorough integrity checks to maintain data consistency and prevent corruption.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 20,
@@ -3594,7 +3594,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Comment actions are not logged, allowing denial of sharing events.\n",
-                  "mitigation": "Comprehensive logging of comments.\n",
+                  "mitigation": "- Comprehensive logging of comments.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 21,
@@ -3607,7 +3607,7 @@
                   "severity": "Medium",
                   "type": "Information disclosure",
                   "description": "Comments exposed to unauthorised users or via logs/errors. Comments are made publicly available, even if the note itself is not public",
-                  "mitigation": "Avoid logging sensitive data, sanitise logs, secure error handling, permission checks",
+                  "mitigation": "- Avoid logging any sensitive data to protect user privacy.\n- Sanitize logs to remove or mask confidential information.\n- Implement secure error handling to prevent information leaks.\n- Enforce strict permission checks for accessing logs and error details.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 22,
@@ -3620,7 +3620,7 @@
                   "severity": "High",
                   "type": "Denial of service",
                   "description": "Excessive comment submissions overwhelm resources, crashing appplication. ",
-                  "mitigation": "Rate limiting, input validation, load balancing",
+                  "mitigation": "- Implement rate limiting to control the frequency of requests.\n- Ensure thorough input validation to maintain data integrity and security.\n- Use load balancing to distribute traffic evenly and improve system performance.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 23,
@@ -3633,7 +3633,7 @@
                   "severity": "Low",
                   "type": "Elevation of privilege",
                   "description": "A public visitor is able to comment on a note, without signing in or registering. ",
-                  "mitigation": "Enforce authorisation",
+                  "mitigation": "- Enforce authorisation",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 24,
@@ -3641,12 +3641,12 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 2,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 3,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -3982,7 +3982,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "Process receives forged delete requests from unauthorised entities. Delete requests may be unwanted by the note owner, but someone has impersonated the owner to delete comments",
-                  "mitigation": "API authentication, authorisation checks, secure session management.\n",
+                  "mitigation": "- Implement API authentication to verify users.\n- Perform authorization checks to ensure proper access.\n- Use secure session management to protect user sessions.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 25,
@@ -3995,7 +3995,7 @@
                   "severity": "Medium",
                   "type": "Tampering",
                   "description": "Malformed or modified delete requests causing unintended comment deletions.\n",
-                  "mitigation": "Input validation and integrity checks on delete requests.\n",
+                  "mitigation": "- Perform input validation on delete requests.\n- Implement integrity checks to ensure data consistency during deletions.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 26,
@@ -4008,7 +4008,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Delete comment actions not logged, enabling repudiation",
-                  "mitigation": "Comprehensive logging of comment deletions.\n",
+                  "mitigation": "- Comprehensive logging of comment deletions.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 27,
@@ -4021,7 +4021,7 @@
                   "severity": "Low",
                   "type": "Information disclosure",
                   "description": "Deleted comment data accessible after deletion due to improper handling",
-                  "mitigation": "Secure data deletion policies. Delete the comment data properly\n",
+                  "mitigation": "- Implement secure data deletion policies.\n- Ensure proper deletion of comment data.\n\n\n\nAsk ChatGPT\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 28,
@@ -4034,7 +4034,7 @@
                   "severity": "Medium",
                   "type": "Denial of service",
                   "description": "Flooding delete comment API causing service disruption.",
-                  "mitigation": "Rate limiting, load balancing, abuse detection",
+                  "mitigation": "- Implement rate limiting to control request frequency.\n- Use load balancing to distribute traffic efficiently.\n- Enable abuse detection to identify and prevent malicious activity.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 29,
@@ -4047,7 +4047,7 @@
                   "severity": "High",
                   "type": "Elevation of privilege",
                   "description": "Non-owners of the note are able to delete comments. ",
-                  "mitigation": "Enforce strict permission checks when attempting to delete comments, ensure user deleting the comment is the owner",
+                  "mitigation": "- Enforce strict permission checks when deleting comments.\n- Ensure the user deleting the comment is the owner.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 30,
@@ -4055,12 +4055,12 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -4189,7 +4189,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "Process receives forged requests from unauthorised entities to toggle note visibility. This could make a note public when owner only wants it private and vice versa. ",
-                  "mitigation": "API authentication, authorisation checks, authenticate toggle operations",
+                  "mitigation": "- Implement API authentication to verify user identity.\n- Perform authorization checks to ensure proper access rights.\n- Authenticate users before allowing toggle operations.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 31,
@@ -4202,7 +4202,7 @@
                   "severity": "Medium",
                   "type": "Tampering",
                   "description": "Manipulation of toggle request function which may cause unwanted and unintended actions. Manipulation of toggle request data causing unauthorised visibility changes.\n",
-                  "mitigation": "Secure toggling functionality, Input validation, integrity checks ",
+                  "mitigation": "- Secure toggling functionality to prevent unauthorized changes.\n- Perform input validation on all toggle inputs.\n- Implement integrity checks to ensure data consistency.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 32,
@@ -4215,7 +4215,7 @@
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Publicise actions not logged, enabling denial of action.",
-                  "mitigation": "Comprehensive logging of Publicise actions.\n",
+                  "mitigation": "- Comprehensive logging of Publicise actions.\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 33,
@@ -4228,7 +4228,7 @@
                   "severity": "Low",
                   "type": "Information disclosure",
                   "description": "Process fails to warn or confirm before making notes public, leading to accidental exposure.\n",
-                  "mitigation": "UI warnings, confirmation dialogs.",
+                  "mitigation": "- Display UI warnings to alert users of important actions.\n- Use confirmation dialogs to verify user intent before proceeding.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 34,
@@ -4241,7 +4241,7 @@
                   "severity": "Medium",
                   "type": "Denial of service",
                   "description": "Flooding Publicise Note API causing service disruption.",
-                  "mitigation": "Rate limiting, load balancing, abuse detection",
+                  "mitigation": "- Implement rate limiting to control request frequency.\n- Use load balancing to distribute traffic efficiently.\n- Enable abuse detection to identify and prevent malicious activity.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 35,
@@ -4254,7 +4254,7 @@
                   "severity": "High",
                   "type": "Elevation of privilege",
                   "description": "Non-owners of the note are able to change publicity of the note. ",
-                  "mitigation": "Strict authorisation and authentication enforcement.",
+                  "mitigation": "- Enforce strict authentication to verify user identities.\n- Enforce strict authorization to control access permissions.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 36,
@@ -4262,12 +4262,12 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
             }
           },
