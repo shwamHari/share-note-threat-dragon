@@ -660,11 +660,13 @@
                 "text": "notes database"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1460,7 +1462,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1477,16 +1480,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "note content",
-              "description": "",
+              "description": "Updated note content stored in DB.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "76574398-2d7c-48b6-85bf-85fb4713929e",
+                  "title": "Unauthorized Content Changes",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "User without edit rights modifies note content via crafted requests.",
+                  "mitigation": "- Check edit permissions on every request.\n- Keep immutable edit logs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 127,
+                  "score": ""
+                },
+                {
+                  "id": "cf6901dd-16a2-4d5a-ae74-c14494357b47",
+                  "title": "Content Exposure via Insecure Transmission",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Edited content intercepted if HTTPS not enforced.",
+                  "mitigation": "- Enforce HTTPS for all edits.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 128,
+                  "score": ""
+                },
+                {
+                  "id": "14ccaee3-c227-43ac-b755-51e33b810e07",
+                  "title": "Content Update Flood",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Rapid edit requests overwhelm DB write operations.",
+                  "mitigation": "- Rate limit content updates.\n- Queue and batch writes when possible.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 129,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "note content"
@@ -1612,7 +1660,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1629,16 +1678,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "shared user information",
-              "description": "read or write permission",
+              "description": "Logged-in user sends recipient details to Share Note process.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "cafb91ba-958f-4390-9f9d-12743aff53ee",
+                  "title": "Unauthorized Modification of User Details",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker alters recipient metadata in transit to redirect shares to themselves.",
+                  "mitigation": "- Sign data payloads to prevent modification.\n- Validate user IDs server-side against active session.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 115,
+                  "score": ""
+                },
+                {
+                  "id": "385162b2-d0a7-44a2-ad81-2d203a024c7d",
+                  "title": "Leakage of Recipient Metadata",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Email or username exposed via insecure transmission or logging in the Share Note process.",
+                  "mitigation": "- Encrypt all transmissions.\n- Avoid storing unnecessary metadata.\n- Restrict access to API parameters containing user details.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 116,
+                  "score": ""
+                },
+                {
+                  "id": "26472278-6581-428a-a57a-e16272bf4876",
+                  "title": "Metadata Flooding",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Large volumes of fake recipient data overwhelm the Share Note process.",
+                  "mitigation": "- Apply size and field validation on inputs.\n- Rate limit requests to sharing endpoints.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 117,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 2,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "shared user information"
@@ -1667,7 +1761,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1684,16 +1779,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "shared user information",
-              "description": "read or write information",
+              "description": "Recipient metadata stored in database.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "1a59dd2c-7d3f-4737-972a-e35f5b0df229",
+                  "title": "Metadata Tampering in Storage",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker with DB access changes recipient to themselves or removes others.",
+                  "mitigation": "- Use role-based DB access controls.\n- Log and monitor changes to sharing metadata.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 124,
+                  "score": ""
+                },
+                {
+                  "id": "a4ad70c4-be65-451d-b3a0-c270d2f8deb7",
+                  "title": "Metadata Leakage from DB",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Query exposes more recipient data than intended.",
+                  "mitigation": "- Scope queries by note and owner.\n- Mask sensitive fields when possible.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 125,
+                  "score": ""
+                },
+                {
+                  "id": "4e791bda-d4e0-4eb8-b737-2e607315b607",
+                  "title": "Metadata Query Flooding",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Flooding metadata queries degrades DB performance.",
+                  "mitigation": "- Index frequently queried fields.\n- Apply rate limits.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 126,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "shared user information"
@@ -1730,7 +1870,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1747,16 +1888,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "user comment text",
-              "description": "",
+              "description": "New comment text stored in DB.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "d7b811af-9bb4-49d5-a82a-c1b9cbc4b05a",
+                  "title": "Comment Tampering",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Malicious payload injected in comment text for XSS or spam.",
+                  "mitigation": "Sanitize all inputs server-side.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 133,
+                  "score": ""
+                },
+                {
+                  "id": "978ec8f1-baf7-4811-b039-f2ffb36c3487",
+                  "title": "Comment Data Exposure in Transit",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Comment intercepted if sent over insecure channel.",
+                  "mitigation": "- Enforce HTTPS.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 134,
+                  "score": ""
+                },
+                {
+                  "id": "4dcbca21-2391-45d0-9ab1-bc90ea17d9fc",
+                  "title": "Comment Spam Flood",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excessive comments flood DB and degrade performance.",
+                  "mitigation": "- Rate limit comments per user/IP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 135,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "user comment text"
@@ -1769,7 +1955,13 @@
             "target": {
               "cell": "801e4123-869e-437b-b43a-bd600b2f4961",
               "port": "3af9aa28-92a8-4727-a203-fd601c84cc61"
-            }
+            },
+            "vertices": [
+              {
+                "x": 950,
+                "y": 220
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1860,7 +2052,13 @@
             "target": {
               "cell": "ae5b180e-8a5e-4c91-ade9-8e097c52e2a5",
               "port": "cb1bbb6c-ca1a-4056-9424-26cd5979da5d"
-            }
+            },
+            "vertices": [
+              {
+                "x": 490,
+                "y": 230
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1954,6 +2152,10 @@
             },
             "vertices": [
               {
+                "x": 480,
+                "y": 260
+              },
+              {
                 "x": 540,
                 "y": 280
               },
@@ -1967,7 +2169,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1984,16 +2187,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "comment information",
-              "description": "comment id, note id",
+              "description": "DB returns stored comment data.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "5c255b25-395e-4955-9eac-12bd08fb53af",
+                  "title": "Returned Comment Tampering",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Returned comment content altered maliciously before delivery.\n",
+                  "mitigation": "Use signed data or server validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 136,
+                  "score": ""
+                },
+                {
+                  "id": "fcfb1028-7638-4ff5-8cc5-d44d993a0bbf",
+                  "title": "Overexposure of Comments",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Comments from other notes visible to unauthorized users.",
+                  "mitigation": "Apply strict auth checks on comment retrieval.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 137,
+                  "score": ""
+                },
+                {
+                  "id": "2033bf6b-d33c-4f20-bcb9-e8cd64a979c5",
+                  "title": "Excessive Comment Retrieval",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Flooding comment retrieval endpoint degrades performance.",
+                  "mitigation": "Apply retrieval throttling and caching.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 138,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "comment information"
@@ -2009,11 +2257,11 @@
             },
             "vertices": [
               {
-                "x": 910,
+                "x": 890,
                 "y": 310
               },
               {
-                "x": 940,
+                "x": 920,
                 "y": 290
               }
             ]
@@ -2280,7 +2528,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -2297,16 +2546,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "shared secret token/link",
-              "description": "",
+              "description": "User creates note and requests share token.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "710dd532-1848-4481-982e-382dfc9437ec",
+                  "title": "Malicious Token Injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker injects pre-generated malicious token into creation request.",
+                  "mitigation": "- Server must always generate tokens itself.\n- Reject externally supplied token values.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 121,
+                  "score": ""
+                },
+                {
+                  "id": "3f6e2a9d-0b03-4743-8117-1cde9f4f6e41",
+                  "title": "Token Leakage During Creation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Newly generated token is exposed to unauthorized users during note creation.",
+                  "mitigation": "Deliver tokens only via secure, authenticated channel.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 122,
+                  "score": ""
+                },
+                {
+                  "id": "dc409ceb-31fe-4c5d-a74f-cd9b1986266d",
+                  "title": "Excessive Token Creation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Attack floods note creation endpoint with requests to generate excessive tokens.",
+                  "mitigation": "- Throttle note creation rate per user.\n- Use CAPTCHA for suspicious creation spikes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 123,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "shared secret token/link"
@@ -2331,7 +2625,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -2348,16 +2643,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "note content",
-              "description": "",
+              "description": "DB retrieves stored note for editing.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "6daa1b0f-6788-4808-b422-3725bcf3dbb4",
+                  "title": "Unauthorized Data Injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "DB returns altered or injected content due to compromise.",
+                  "mitigation": "- Validate retrieved data integrity.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 130,
+                  "score": ""
+                },
+                {
+                  "id": "f9770306-03d1-4d6c-b42d-0d754d9a9317",
+                  "title": "Overexposure of Notes",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Editor sees other users’ notes due to missing filters.",
+                  "mitigation": "- Scope DB queries by user rights.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 131,
+                  "score": ""
+                },
+                {
+                  "id": "cebc1314-840b-46fd-bf4e-91a3b04026ba",
+                  "title": "Excessive Retrieval Requests",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Continuous retrieval requests degrade performance.",
+                  "mitigation": "Throttle repeated retrievals.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 132,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "note content"
@@ -2422,12 +2762,38 @@
                   "new": false,
                   "number": 112,
                   "score": ""
+                },
+                {
+                  "id": "e04fc958-e093-4099-8fee-e8ac5dc4ac5d",
+                  "title": "Token Interception or Guessing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Weak or exposed token allows unauthorized viewing or editing of a note.",
+                  "mitigation": "- Use long, random, unguessable tokens.\n- Expire tokens after short periods or single use.\n- Limit scope of token access.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 113,
+                  "score": ""
+                },
+                {
+                  "id": "08d2269f-5c99-4dd7-b6d4-63a3297ae543",
+                  "title": "Token Flooding Attack",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Automated requests try large volumes of guessed tokens, overwhelming verification endpoints.",
+                  "mitigation": "- Implement rate limiting on token checks.\n- Block IPs with repeated failed token attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 114,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
                 "tampering": 0,
-                "informationDisclosure": 1,
-                "denialOfService": 0
+                "informationDisclosure": 2,
+                "denialOfService": 1
               }
             },
             "labels": [
@@ -2461,7 +2827,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -2478,16 +2845,61 @@
             "data": {
               "type": "tm.Flow",
               "name": "shared secret token/link",
-              "description": "",
+              "description": "User generates a share token via Share Note.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "d75171ae-1939-4306-ad12-d5bf36d2d77a",
+                  "title": "Forged Token Submission",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker submits forged token to gain access to another user’s note.",
+                  "mitigation": "- Validate token ownership in backend.\n- Require authentication before token creation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 118,
+                  "score": ""
+                },
+                {
+                  "id": "2fdcf3ef-25ee-4eb3-80b3-64fecf14c808",
+                  "title": "Token Leakage from UI or Logs",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Share token is visible in client logs, browser history, or screenshots.",
+                  "mitigation": "- Hide tokens in UI where possible.\n- Avoid logging tokens in plaintext.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 119,
+                  "score": ""
+                },
+                {
+                  "id": "137650dd-e277-4f90-ae65-4c92b6993613",
+                  "title": "Token Generation Abuse",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Repeated token generation floods DB with unused entries.",
+                  "mitigation": "- Limit token creation per note per timeframe.\n- Purge unused tokens periodically.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 120,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "shared secret token/link"
@@ -4071,6 +4483,6 @@
     ],
     "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 112
+    "threatTop": 138
   }
 }
