@@ -3774,7 +3774,7 @@
                   "status": "Open",
                   "severity": "High",
                   "type": "Spoofing",
-                  "description": "Malicious process or request pretending to be Share Note process. Someone may send a malicious share link impersonating a real user.",
+                  "description": "- Malicious process or request pretending to be Share Note process.\n- Someone may send a malicious share link impersonating a real user.",
                   "mitigation": "API authentication, authorisation checks, secure session management.\n",
                   "modelType": "STRIDE",
                   "new": false,
@@ -3848,9 +3848,9 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 1,
-                "repudiation": 1,
+                "repudiation": 2,
                 "informationDisclosure": 1,
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
