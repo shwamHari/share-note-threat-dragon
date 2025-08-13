@@ -3,7 +3,7 @@
   "summary": {
     "title": "Share Note Model",
     "owner": "Shyam Hari, Uday Daroch, Cody Wech, Christopher Wareing ",
-    "description": "",
+    "description": "ShareNote is a web app for writing notes, sharing them, and chatting in the comments. Owners can keep a note private, make it public, or send a secret link that lets someone read or edit. Public notes are read only, commenting is for logged-in users who have access, and owners can remove comments on their own notes. The site runs over HTTPS behind a reverse proxy and stores data in two internal databases: one for accounts for users and one for notes, images, and comments. These databases are on premises. Secret links are delivered through email or messaging outside the app. The main users are visitors, signed-in users, note owners, and people with a share link. ",
     "id": 0
   },
   "detail": {
