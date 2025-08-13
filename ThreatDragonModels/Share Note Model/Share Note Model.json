@@ -947,7 +947,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "public visitor (0)",
               "threats": [
                 {
                   "id": "6dc1971e-4621-431e-b2b9-32775ba8d941",
@@ -3145,7 +3145,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "public visitor (0)",
               "threats": [
                 {
                   "id": "8e14ed61-81a0-41d7-81b3-729aac67f114",
@@ -3352,7 +3352,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "logged-in user (3)",
               "threats": [
                 {
                   "id": "fa050cc2-872b-4c6d-92fe-f75ad095d1af",
@@ -3559,7 +3559,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "logged-in user (3)",
               "threats": [
                 {
                   "id": "9110c435-f4fd-453c-b4cc-38a027ce10c0",
@@ -3766,7 +3766,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "note owner (4)",
               "threats": [
                 {
                   "id": "413e391a-4304-430c-b967-d2363a7b6537",
@@ -3973,7 +3973,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "note owner (4)",
               "threats": [
                 {
                   "id": "3634b2d5-30c7-412b-af81-54114eef1873",
@@ -4180,7 +4180,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "note owner (4)",
               "threats": [
                 {
                   "id": "ba5477d6-0525-4d89-bb19-65e48037e5be",
@@ -4387,7 +4387,7 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "",
+              "privilegeLevel": "note owner / shared editor (4/2)",
               "threats": [
                 {
                   "id": "4d308c0d-72a6-4cbc-afca-e2b2ac90d877",
