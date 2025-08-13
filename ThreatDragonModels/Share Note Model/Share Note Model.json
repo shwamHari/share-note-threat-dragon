@@ -2787,7 +2787,7 @@
                   "id": "08d2269f-5c99-4dd7-b6d4-63a3297ae543",
                   "title": "Token Flooding Attack",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Low",
                   "type": "Denial of service",
                   "description": "Automated requests try large volumes of guessed tokens, overwhelming verification endpoints.",
                   "mitigation": "- Implement rate limiting on token checks.\n- Block IPs with repeated failed token attempts.",
@@ -2800,7 +2800,7 @@
               "threatFrequency": {
                 "tampering": 0,
                 "informationDisclosure": 2,
-                "denialOfService": 1
+                "denialOfService": 2
               }
             },
             "labels": [
@@ -3404,7 +3404,7 @@
                   "id": "ebffbf2f-1d7f-4894-97ea-7c2c116fdda6",
                   "title": "Leakage of Note Data in Process",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Information disclosure",
                   "description": "The Create Note process unintentionally exposes note data e.g. via logs or error messages.",
                   "mitigation": "- Prevent logging of any sensitive data to protect user privacy.\n- Sanitize logs to remove or mask confidential information before storage.\n- Implement secure error handling to avoid exposing sensitive details through error messages.",
@@ -3444,13 +3444,15 @@
                 "spoofing": 3,
                 "tampering": 2,
                 "repudiation": 2,
-                "informationDisclosure": 2,
+                "informationDisclosure": 3,
                 "denialOfService": 2,
                 "elevationOfPrivilege": 2
               }
             },
             "tools": {
               "items": [
+                "boundary",
+                "button-remove",
                 "boundary",
                 "button-remove"
               ],
