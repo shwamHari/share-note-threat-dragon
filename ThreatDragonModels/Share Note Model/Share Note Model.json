@@ -3368,7 +3368,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker or malicious internal component sends forged requests pretending to be the Create Note process, creating notes without authorisation.\n",
-                  "mitigation": "- Authenticate API calls within the system to ensure they originate from trusted sources.\n- Verify the identities of callers to prevent unauthorized access.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
+                  "mitigation": "- Authenticate API calls within the system to ensure they originate from trusted sources.\n- Verify the identities of callers to prevent unauthorized access.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 7,
@@ -3441,13 +3441,20 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 2,
                 "repudiation": 2,
                 "informationDisclosure": 2,
                 "denialOfService": 2,
                 "elevationOfPrivilege": 2
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -3655,13 +3662,6 @@
                 "denialOfService": 2,
                 "elevationOfPrivilege": 2
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
