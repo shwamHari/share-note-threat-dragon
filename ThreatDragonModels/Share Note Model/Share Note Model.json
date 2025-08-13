@@ -2,8 +2,8 @@
   "version": "2.4.1",
   "summary": {
     "title": "Share Note Model",
-    "owner": "",
-    "description": "hi",
+    "owner": "Shyam Hari, Uday Daroch, Cody Wech, Christopher Wareing ",
+    "description": "",
     "id": 0
   },
   "detail": {
@@ -4485,7 +4485,8 @@
               }
             }
           }
-        ]
+        ],
+        "description": ""
       }
     ],
     "diagramTop": 3,
