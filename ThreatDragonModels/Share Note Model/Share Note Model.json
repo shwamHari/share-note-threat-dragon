@@ -3575,7 +3575,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "Malicious process or request pretending to be Comment on Note process. Malicious processes send forged requests to post comments under another user or process identity.\n",
-                  "mitigation": "- Implement robust API authentication to verify user identities.\n- Conduct thorough authorization checks to ensure users have appropriate access rights.\n- Maintain secure session management to protect and manage user sessions safely.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
+                  "mitigation": "- Implement robust API authentication to verify user identities.\n- Conduct thorough authorization checks to ensure users have appropriate access rights.\n- Maintain secure session management to protect and manage user sessions safely.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 19,
@@ -3648,13 +3648,20 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 2,
                 "repudiation": 2,
                 "informationDisclosure": 3,
                 "denialOfService": 2,
                 "elevationOfPrivilege": 2
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -3988,8 +3995,8 @@
                   "status": "Mitigated",
                   "severity": "High",
                   "type": "Spoofing",
-                  "description": "Process receives forged delete requests from unauthorised entities. Delete requests may be unwanted by the note owner, but someone has impersonated the owner to delete comments",
-                  "mitigation": "- Implement API authentication to verify users.\n- Perform authorization checks to ensure proper access.\n- Use secure session management to protect user sessions.\n\n\n\n\n\n\n\n\nAsk ChatGPT\n",
+                  "description": "Process receives forged delete requests from unauthorised entities. Delete requests may be unwanted by the note owner, but someone has impersonated the owner to delete comment",
+                  "mitigation": "- Implement API authentication to verify users.\n- Perform authorization checks to ensure proper access.\n- Use secure session management to protect user sessions.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 25,
@@ -4028,7 +4035,7 @@
                   "severity": "Low",
                   "type": "Information disclosure",
                   "description": "Deleted comment data accessible after deletion due to improper handling",
-                  "mitigation": "- Implement secure data deletion policies.\n- Ensure proper deletion of comment data.\n\n\n\nAsk ChatGPT\n",
+                  "mitigation": "- Implement secure data deletion policies.\n- Ensure proper deletion of comment data.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 28,
@@ -4062,10 +4069,10 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 2,
                 "repudiation": 2,
-                "informationDisclosure": 2,
+                "informationDisclosure": 3,
                 "denialOfService": 2,
                 "elevationOfPrivilege": 2
               }
